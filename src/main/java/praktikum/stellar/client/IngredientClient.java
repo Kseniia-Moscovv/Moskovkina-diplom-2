@@ -8,7 +8,7 @@ import static io.restassured.RestAssured.given;
 
 public class IngredientClient extends Client {
 
-    protected static final String INGREDIENT_URI = BASE_URI + "ingredients";
+    protected static final String INGREDIENT_URI = "ingredients";
 
     @Step("Get ingredients")
     public IngredientsResponse get() {

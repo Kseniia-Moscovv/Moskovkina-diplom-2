@@ -8,7 +8,7 @@ import praktikum.stellar.model.order.OrderCreate;
 import static io.restassured.RestAssured.given;
 
 public class OrderClient extends Client {
-    protected static final String ORDER_URI = BASE_URI + "orders";
+    protected static final String ORDER_URI = "orders";
 
     @Step("Create order {orderCreate}")
     public ValidatableResponse create(OrderCreate orderCreate, String authorization) {

@@ -72,10 +72,13 @@ public class UserCreateTest {
     @DisplayName ("Negative check to create user without required fields")
     @Description("Fail to check that user doesn't create without password")
     public void failToCreateUserWithoutRequiredFields() {
-         UserCreate userWithoutPassword = new UserCreate("cutekotik@ya.ru", "", "Kotik");
+        UserCreate userWithoutPassword = new UserCreate("cutekotik@ya.ru", "", "Kotik");
 
-        userClient.create(userWithoutPassword)
-                .assertThat()
+        ValidatableResponse createResponse = userClient.create(userWithoutPassword);
+        String token = createResponse.extract().path("accessToken");
+        accessToken = token;
+
+        createResponse.assertThat()
                 .statusCode(HttpURLConnection.HTTP_FORBIDDEN)
                 .and()
                 .body("success", CoreMatchers.is(false))
